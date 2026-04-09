@@ -24,7 +24,7 @@ PlayerManager="*res://00_Globals/globlals_player_manager.gd"
 
 window/size/viewport_width=480
 window/size/viewport_height=270
-window/size/window_width_override=1280
+window/size/window_width_override=1240
 window/size/window_height_override=720
 window/stretch/mode="viewport"
 

@@ -27,8 +27,6 @@ func _ready() -> void:# 初始化
 	state_machine.initialize(self)# 注入自己給狀態機
 	player = PlayerManager.player# 取得玩家引用
 	hit_box.Damaged.connect( _take_damage )
-	pass# 佔位
-
 
 
 func _process(_delta: float) -> void:# 每幀邏輯（未用）
@@ -57,10 +55,8 @@ func set_direction(direction) -> bool:# 根據輸入更新面向
 
 func update_animation(state : String) -> void:# 切換動畫狀態
 	animation_player.play(state + "_" + AnimDirection())# 播放帶朝向後綴的動畫
-	
-	
-	
-	
+	print(state + "_" + AnimDirection())
+
 func AnimDirection() -> String:# 生成動畫方向字串
 	if cardinal_direction == Vector2.DOWN: # 面向下時
 		return "down"# 返回 down
@@ -68,6 +64,7 @@ func AnimDirection() -> String:# 生成動畫方向字串
 		return "up"	# 返回 up
 	else: # 左右時
 		return "side"# 返回 side
+
 
 func _take_damage ( damage : int) -> void :
 

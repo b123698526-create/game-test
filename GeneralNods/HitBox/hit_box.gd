@@ -10,4 +10,3 @@ func _process( _delta: float) -> void: # 每幀處理暫未使用
 func TakeDamage(damage : int ) -> void: # 接收外部傳入的傷害
 	print( "TakeDamage:", damage  ) # 列印傷害數值方便除錯
 	Damaged.emit(damage) # 發射 Damaged 信號給監聽方
- 

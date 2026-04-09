@@ -21,7 +21,7 @@ func Enter() -> void:# 狀態進入時的掛鉤
 	enemy.velocity = Vector2.ZERO
 	_timer = randf_range(state_dration_min,state_dration_max)
 	enemy.update_animation(anim_name)
-	pass# 留空供子類實現
+
 	
 
 func Exit() -> void: # 狀態退出時的掛鉤
