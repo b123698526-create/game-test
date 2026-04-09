@@ -18,7 +18,7 @@ func init() -> void:
 func _ready() -> void:# 基類初始化暫不處理
 	pass # 佔位以便子類覆寫
 
-func Enter() -> void:# 狀態進入時的掛鉤
+func enter() -> void:# 狀態進入時的掛鉤
 	_timer = randi_range(state_cycles_min,state_cycles_mix) * state_animation_durtion
 	var  rand = randi_range( 0 , 3 )
 	_direction = enemy.DIR_4[ rand ]
@@ -28,16 +28,16 @@ func Enter() -> void:# 狀態進入時的掛鉤
 	pass# 留空供子類實現
 	
 
-func Exit() -> void: # 狀態退出時的掛鉤
+func exit() -> void: # 狀態退出時的掛鉤
 	pass# 留空供子類實現
 
-func Process(_delta : float) -> EnemyState:# 每幀更新，可返回要切換的狀態
+func process(_delta : float) -> EnemyState:# 每幀更新，可返回要切換的狀態
 	_timer -= _delta
 	
 	if _timer <= 0:
 		return next_state
 	return null# 預設不切換狀態
 
-func Physics(_delta : float) -> EnemyState:# 物理幀更新，可返回要切換的狀態
+func physics(_delta : float) -> EnemyState:# 物理幀更新，可返回要切換的狀態
 	return null# 預設不切換狀態
 	
