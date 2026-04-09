@@ -46,7 +46,7 @@ func change_state(new_state: EnemyState) -> void:	# 狀態切換
 	if new_state == null or new_state == current_state:
 		return
 	if current_state:
-		current_state.Exit()
+		current_state.exit()
 	prev_state = current_state
 	current_state = new_state
 	current_state.enter()

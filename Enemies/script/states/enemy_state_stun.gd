@@ -35,6 +35,7 @@ func exit() -> void: # 狀態退出時的掛鉤
 func process(_delta : float) -> EnemyState:# 每幀更新，可返回要切換的狀態
 	if _animation_finished == true :
 		return next_state
+	
 	enemy.velocity = enemy.velocity * decelerate_speed * _delta
 	return null# 預設不切換狀態
 
