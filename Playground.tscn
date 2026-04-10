@@ -41,4 +41,4 @@ position = Vector2(292, 233)
 position = Vector2(-40, 200)
 
 [node name="Slime" parent="." instance=ExtResource("4_46faf")]
-position = Vector2(99, 139)
+position = Vector2(198, 78)

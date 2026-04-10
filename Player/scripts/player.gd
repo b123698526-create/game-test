@@ -47,7 +47,7 @@ func set_direction() -> bool:# 根據輸入更新面向
 
 func update_animation(state : String) -> void:# 切換動畫狀態
 	animation_player.play(state + "_" + AnimDirection())# 播放帶朝向後綴的動畫
-	
+	print("player" + state + "_" + AnimDirection())
 	pass# 佔位便於擴展
 
 func AnimDirection() -> String:# 生成動畫方向字串
