@@ -40,5 +40,13 @@ position = Vector2(292, 233)
 [node name="Plant8" parent="Plants" instance=ExtResource("3_1cwr0")]
 position = Vector2(-40, 200)
 
-[node name="Slime" parent="." instance=ExtResource("4_46faf")]
-position = Vector2(198, 78)
+[node name="slimes" type="Node" parent="."]
+
+[node name="Slime3" parent="slimes" instance=ExtResource("4_46faf")]
+position = Vector2(57, 140)
+
+[node name="Slime2" parent="slimes" instance=ExtResource("4_46faf")]
+position = Vector2(208, 173)
+
+[node name="Slime" parent="slimes" instance=ExtResource("4_46faf")]
+position = Vector2(139, 140)
