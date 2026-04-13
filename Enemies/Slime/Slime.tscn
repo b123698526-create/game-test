@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dh7waxk8g54eq"]
+[gd_scene load_steps=33 format=3 uid="uid://dh7waxk8g54eq"]
 
 [ext_resource type="Texture2D" uid="uid://c1fh8dlo5okyu" path="res://Enemies/Slime/Shadow.png" id="1_0ae7n"]
 [ext_resource type="Texture2D" uid="uid://32k445bj788e" path="res://Enemies/Slime/Slime.png" id="1_hsbk2"]
@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://bvinf4avwj6r0" path="res://Enemies/Slime/hit_00.wav" id="6_suwpu"]
 [ext_resource type="Texture2D" uid="uid://bq2tf7tl2al3y" path="res://Enemies/Slime/DestroySmoke.png" id="10_5fs0k"]
 [ext_resource type="Script" uid="uid://cbidcimaelfrj" path="res://Enemies/script/states/enemy_state_stun.gd" id="10_j1ull"]
+[ext_resource type="Script" uid="uid://e21xbe8adwd3" path="res://Enemies/script/states/enemy_state_destroy.gd" id="12_36jae"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_suwpu"]
 radius = 13.0
@@ -768,7 +769,9 @@ after_idle_state = NodePath(".")
 
 [node name="Stun" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("next_state")]
 script = ExtResource("10_j1ull")
+anim_name = null
 knockback_speed = 600.0
+decelerate_speed = null
 next_state = NodePath("../Idle")
 
 [node name="wander" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("next_state")]
@@ -778,6 +781,7 @@ state_animation_durtion = 0.7
 next_state = NodePath(".")
 
 [node name="Destroy" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("12_36jae")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 max_polyphony = 4
