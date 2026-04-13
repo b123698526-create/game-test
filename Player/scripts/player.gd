@@ -45,10 +45,10 @@ func set_direction() -> bool:# 根據輸入更新面向
 	sprite.scale.x = -1 if cardinal_direction == Vector2.LEFT else 1# 根據左右朝向翻轉精靈
 	return true	# 返回 true 表示更新成功
 
+
 func update_animation(state : String) -> void:# 切換動畫狀態
 	animation_player.play(state + "_" + AnimDirection())# 播放帶朝向後綴的動畫
-	print("player" + state + "_" + AnimDirection())
-	pass# 佔位便於擴展
+
 
 func AnimDirection() -> String:# 生成動畫方向字串
 	if cardinal_direction == Vector2.DOWN: # 面向下時

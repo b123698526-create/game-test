@@ -769,9 +769,7 @@ after_idle_state = NodePath(".")
 
 [node name="Stun" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("next_state")]
 script = ExtResource("10_j1ull")
-anim_name = null
 knockback_speed = 600.0
-decelerate_speed = null
 next_state = NodePath("../Idle")
 
 [node name="wander" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("next_state")]
