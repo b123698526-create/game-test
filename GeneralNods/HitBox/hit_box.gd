@@ -7,5 +7,5 @@ func _ready() -> void: # 初始化時暫未處理
 
 
 
-func TakeDamage(damage : int ) -> void: # 接收外部傳入的傷害
+func Take_Damage(damage : int ) -> void: # 接收外部傳入的傷害
 	Damaged.emit(damage) # 發射 Damaged 信號給監聽方

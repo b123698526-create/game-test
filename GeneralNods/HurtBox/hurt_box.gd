@@ -11,4 +11,4 @@ func _ready() -> void: # 場景進入時連接進入信號
 
 func AreaEntered( a : Area2D ) -> void: # 處理進入區域的 Area2D
 	if a is HitBox : # 若進入者是 HitBox
-		a.TakeDamage( damage ) # 調用 HitBox 的受擊邏輯，傳入傷害值
+		a.Take_Damage( self ) # 調用 HitBox 的受擊邏輯，
