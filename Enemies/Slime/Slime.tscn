@@ -726,6 +726,7 @@ collision_mask = 16
 script = ExtResource("1_wyclx")
 
 [node name="HurtBox" parent="." instance=ExtResource("3_j1ull")]
+damage = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(0, -8)

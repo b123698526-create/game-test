@@ -20,6 +20,7 @@ func init() -> void:
 func _ready() -> void:
 	pass 
 
+
 func enter() -> void:# 狀態進入時的掛鉤
 	enemy.invulnerable = true
 	_animation_finished = false
@@ -27,9 +28,9 @@ func enter() -> void:# 狀態進入時的掛鉤
 	#捕捉PLAYER反向量
 	enemy.velocity = _direction * -knockback_speed
 	enemy.set_direction(_direction)
-	
 	enemy.update_animation(anim_name)
 	enemy.animation_player.animation_finished.connect(_on_animation_finished)	
+
 
 func exit() -> void: # 狀態退出時的掛鉤
 	enemy.animation_player.animation_finished.disconnect(_on_animation_finished)
@@ -43,14 +44,15 @@ func process(_delta : float) -> EnemyState:# 每幀更新，可返回要切換�
 	enemy.velocity = enemy.velocity * decelerate_speed * _delta
 	return null
 
+
 func physics(_delta : float) -> EnemyState:# 物理幀更新，可返回要切換的狀態
 	return null
+
 	
-func _on_enemy_damaged( hurt_box : HitBox ) -> void:
+func _on_enemy_damaged( hurt_box : HurtBox ) -> void:
 	state_machine.change_state( self )
 	_damaged_position = hurt_box.global_position
 	
-	
-	
+		
 func _on_animation_finished( _a : String ) -> void :
 	_animation_finished = true 

@@ -2,8 +2,8 @@ class_name Enemy extends CharacterBody2D# 敵人角色，繼承物理角色基�
 
 
 signal direction_changed( _new_direction : Vector2 )# 朝向改變時發出的訊號
-signal enemy_damage( hurt_box : HitBox )# 受傷時的訊號
-signal enemy_destroyed( hurt_box : HitBox )
+signal enemy_damage( hurt_box : HurtBox )# 受傷時的訊號
+signal enemy_destroyed( hurt_box : HurtBox )
 
 const DIR_4 = [Vector2.RIGHT,Vector2.DOWN,Vector2.LEFT,Vector2.UP]# 四方向表
 
@@ -66,10 +66,10 @@ func AnimDirection() -> String:# 生成動畫方向字串
 		return "side"
 
 
-func _take_damage ( hurt_box : HitBox) -> void :
+func _take_damage ( hurt_box : HurtBox) -> void :
 	if invulnerable == true :
 		return
-	hp -= hurt_box.damaged
+	hp -= hurt_box.damage
 	if hp > 0 :
 		enemy_damage.emit(hurt_box)
 	else:
