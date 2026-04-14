@@ -66,10 +66,10 @@ func AnimDirection() -> String:# 生成動畫方向字串
 		return "side"
 
 
-func _take_damage ( damage : int) -> void :
+func _take_damage ( hurt_box : HitBox) -> void :
 	if invulnerable == true :
 		return
-	hp -= damage
+	hp -= hurt_box.Damaged
 	if hp > 0 :
 		enemy_damage.emit()
 	else:
