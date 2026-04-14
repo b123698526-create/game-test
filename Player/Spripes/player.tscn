@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://d0arotb3r1h37"]
+[gd_scene load_steps=34 format=3 uid="uid://d0arotb3r1h37"]
 
 [ext_resource type="Script" uid="uid://bgfwrw05kx8g6" path="res://Player/scripts/player.gd" id="1_4ntmi"]
 [ext_resource type="Texture2D" uid="uid://dfqh72deo4l0c" path="res://Player/Spripes/PlayerSprite02.png" id="2_thq5y"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cf1tyb6862ljg" path="res://GeneralNods/HurtBox/hurt_box.tscn" id="10_g0htv"]
 [ext_resource type="Script" uid="uid://g0f3i2tbd7ol" path="res://Player/scripts/Player interactionsHost.gd" id="10_w6wad"]
 [ext_resource type="Script" uid="uid://bx1yud51ofctw" path="res://Player/scripts/PlayerCamera.gd" id="11_qdp0q"]
+[ext_resource type="PackedScene" uid="uid://d0hvxu0a0g2nj" path="res://GeneralNods/HitBox/hit_box.tscn" id="13_udi6j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0e48y"]
 
@@ -465,11 +466,14 @@ _data = {
 &"walk_up": SubResource("Animation_00tjw")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_r1pij"]
+
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 16
 motion_mode = 1
 wall_min_slide_angle = 0.17453292
 script = ExtResource("1_4ntmi")
+invulnerable = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_0e48y")
@@ -537,3 +541,10 @@ max_polyphony = 4
 
 [node name="Interactions" type="Node2D" parent="."]
 script = ExtResource("10_w6wad")
+
+[node name="HitBox" parent="." instance=ExtResource("13_udi6j")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, -11)
+shape = SubResource("CircleShape2D_r1pij")
+debug_color = Color(0.8690352, 0.63357866, 0, 0.41960785)

@@ -12,7 +12,7 @@ const DIR_4 = [Vector2.RIGHT,Vector2.DOWN,Vector2.LEFT,Vector2.UP]# 四方向表
 var cardinal_direction : Vector2 = Vector2.DOWN# 面向方向，用於動畫/翻轉
 var direction : Vector2 = Vector2.ZERO# 當前輸入或移動方向
 var player : Player# 目標玩家引用（需外部設定）
-var invulnerable :bool = false# 是否無敵中
+@export var invulnerable :bool = false# 是否無敵中
 
 
 @onready var animation_player : AnimationPlayer = $AnimationPlayer # 動畫播放器節點引用
@@ -26,7 +26,7 @@ var invulnerable :bool = false# 是否無敵中
 func _ready() -> void:# 初始化
 	state_machine.initialize(self)# 注入自己給狀態機
 	player = PlayerManager.player# 取得玩家引用
-	hit_box.Damaged.connect( _take_damage )
+	hit_box.damaged.connect( _take_damage )
 
 
 func _process(_delta: float) -> void:# 每幀邏輯（未用）
@@ -69,7 +69,7 @@ func AnimDirection() -> String:# 生成動畫方向字串
 func _take_damage ( hurt_box : HurtBox) -> void :
 	if invulnerable == true :
 		return
-	hp -= hurt_box.damage
+	hp -= hurt_box.damaged
 	if hp > 0 :
 		enemy_damage.emit(hurt_box)
 	else:

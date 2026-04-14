@@ -1,7 +1,7 @@
 class_name HurtBox extends Area2D # 傷害判定節點，繼承 Area2D
 
 
-@export var damage : TakeDamage # 暴露傷害數值到 Inspector，預設 1 點
+@export var damaged : int = 1 # 暴露傷害數值到 Inspector，預設 1 點
 
 
 

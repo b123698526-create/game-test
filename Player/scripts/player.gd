@@ -1,19 +1,29 @@
 class_name Player extends CharacterBody2D # 玩家角色，繼承 CharacterBody2D
 
+signal DirectionChanged(new_direction : Vector2 ) # 當面向變化時對外廣播
+signal player_damaged( hurt_box : HurtBox )
+
+const DIR_4 = [ Vector2.RIGHT,Vector2.DOWN,Vector2.LEFT,Vector2.UP ] # 四向列表用於索引
+
 var direction : Vector2 = Vector2.ZERO # 向量預設為0
 var cardinal_direction : Vector2 = Vector2.DOWN # 記錄四方向朝向，初始向下
-const DIR_4 = [ Vector2.RIGHT,Vector2.DOWN,Vector2.LEFT,Vector2.UP ] # 四向列表用於索引
+
+var invulnerable : bool = false
+var hp : int = 6
+var max_hp : int = 6
 
 @onready var animation_player : AnimationPlayer = $AnimationPlayer # 動畫播放器節點引用
 @onready var sprite : Sprite2D = $Sprite2D # 精靈節點引用，控制翻轉
 @onready var state_machine: PlayerStateMachine = $StateMachine # 狀態機節點引用
+@onready var hit_box: HitBox = $HitBox
 
-signal DirectionChanged(new_direction : Vector2 ) # 當面向變化時對外廣播
+
 
 func _ready() -> void: # 場景載入完成後的初始化
 	PlayerManager.player = self
 	state_machine.Initialize(self) # 將自身傳入狀態機完成初始化
-	pass # 佔位方便擴展
+	hit_box.damaged.connect(_take_damage)
+
 
 func _process(_delta: float) -> void: # 每幀計算輸入方向
 	# direction.x = Input.get_action_strength("right") - Input.get_action_strength("left") 
@@ -57,3 +67,18 @@ func AnimDirection() -> String:# 生成動畫方向字串
 		return "up"	# 返回 up
 	else: # 左右時
 		return "side"# 返回 side
+
+
+func _take_damage(hurt_box : HurtBox) -> void:
+	
+	pass
+
+
+func update_hp( _delta : int ) -> void:
+	
+	pass
+	
+	
+func make_invulnerable() -> void:
+	
+	pass
