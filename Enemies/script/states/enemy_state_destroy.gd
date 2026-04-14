@@ -6,7 +6,7 @@ class_name EnemyStateDestroy extends EnemyState
 
 @export_category("AI")
 
-
+var _damaged_position : Vector2
 var _direction : Vector2
 
 
@@ -20,7 +20,7 @@ func _ready() -> void:# 基類初始化暫不處理
 
 func enter() -> void:# 狀態進入時的掛鉤
 	enemy.invulnerable = true
-	_direction = enemy.global_position.direction_to(enemy.player.global_position)
+	_direction = enemy.global_position.direction_to(_damaged_position)
 	#捕捉PLAYER反向量
 	enemy.velocity = _direction * -knockback_speed
 	enemy.set_direction(_direction)
@@ -40,7 +40,8 @@ func process(_delta : float) -> EnemyState:# 每幀更新，可返回要切換�
 func physics(_delta : float) -> EnemyState:# 物理幀更新，可返回要切換的狀態
 	return null# 預設不切換狀態
 	
-func _on_enemy_destroyed() -> void:
+func _on_enemy_destroyed( hurt_box : HitBox ) -> void:
+	_damaged_position = hurt_box.global_position
 	state_machine.change_state( self )
 
 func _on_animation_finished( _a : String ) -> void :
