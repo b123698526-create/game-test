@@ -2,6 +2,7 @@ class_name Player extends CharacterBody2D # 玩家角色，繼承 CharacterBody2
 
 signal DirectionChanged(new_direction : Vector2 ) # 當面向變化時對外廣播
 signal player_damaged( hurt_box : HurtBox )
+#signal player_destroyd( hurt_box : HurtBox )
 
 const DIR_4 = [ Vector2.RIGHT,Vector2.DOWN,Vector2.LEFT,Vector2.UP ] # 四向列表用於索引
 
@@ -12,9 +13,11 @@ var invulnerable : bool = false
 var hp : int = 6
 var max_hp : int = 6
 
-@onready var animation_player : AnimationPlayer = $AnimationPlayer # 動畫播放器節點引用
-@onready var sprite : Sprite2D = $Sprite2D # 精靈節點引用，控制翻轉
-@onready var state_machine: PlayerStateMachine = $StateMachine # 狀態機節點引用
+
+@onready var effect_animation_player: AnimationPlayer = $EffectAnimationPlayer
+@onready var animation_player : AnimationPlayer = $AnimationPlayer 
+@onready var state_machine: PlayerStateMachine = $StateMachine
+@onready var sprite : Sprite2D = $Sprite2D 
 @onready var hit_box: HitBox = $HitBox
 
 
@@ -22,6 +25,7 @@ var max_hp : int = 6
 func _ready() -> void: # 場景載入完成後的初始化
 	PlayerManager.player = self
 	state_machine.Initialize(self) # 將自身傳入狀態機完成初始化
+	update_hp(99)
 	hit_box.damaged.connect(_take_damage)
 
 
@@ -70,13 +74,22 @@ func AnimDirection() -> String:# 生成動畫方向字串
 
 
 func _take_damage(hurt_box : HurtBox) -> void:
-	
-	pass
+	if invulnerable == true:
+		return
+	update_hp(-hurt_box.damage)
+	if hp > 0:
+		player_damaged.emit( hurt_box )
+	else  :
+		#playey_destroyd.emit( hurt_box )
+		player_damaged.emit( hurt_box )
+		update_hp(99)
 
 
 func update_hp( _delta : int ) -> void:
 	
-	pass
+	hp =  clampi(hp + _delta ,0,max_hp)
+		
+	
 	
 	
 func make_invulnerable() -> void:
