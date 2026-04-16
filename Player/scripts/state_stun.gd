@@ -16,11 +16,13 @@ func _init() -> void:
 	player.player_damaged.connect( _player_damaged)
 
 func enter() -> void:# 進入行走狀態時設定動畫
-	pass
+	player.update_animation("stun")
+	player.animation_player.animation_finished.connect(_animation_finished)
+	
 
 func exit() -> void: # 離開行走狀態暫不處理
-	pass# 佔位
-
+	next_steat =null
+	player.animation_player.animation_finished.disconnect(_animation_finished)
 
 func process(_delta : float) -> State:# 每幀更新移動並判斷切換	
 	return next_steat
@@ -36,3 +38,8 @@ func handle_input( _event : InputEvent ) -> State:# 處理攻擊輸入
 func _player_damaged( _hurt_box : HurtBox ) -> void :
 	hurt_box = _hurt_box
 	state_machine.change_state(self)
+
+
+func _animation_finished() -> void:
+	next_steat = idle
+	
