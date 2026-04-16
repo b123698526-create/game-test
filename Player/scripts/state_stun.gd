@@ -12,7 +12,8 @@ var direction : Vector2
 
 var next_steat : State = null
 
-
+func _init() -> void:
+	player.player_damaged.connect( _player_damaged)
 
 func enter() -> void:# 進入行走狀態時設定動畫
 	pass
@@ -31,3 +32,7 @@ func physics(_delta : float) -> State:# 物理幀未額外處理
 	
 func handle_input( _event : InputEvent ) -> State:# 處理攻擊輸入
 	return null# 其他輸入不切換
+
+func _player_damaged( _hurt_box : HurtBox ) -> void :
+	hurt_box = _hurt_box
+	state_machine.change_state(self)

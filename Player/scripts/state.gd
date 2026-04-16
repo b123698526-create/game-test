@@ -1,6 +1,7 @@
 class_name State extends Node # 狀態基類，繼承 Node
 
-var player: Player # 玩家引用，供子類訪問
+static  var player: Player
+static  var state_machine: PlayerStateMachine 
 
 func _ready() -> void:# 基類初始化暫不處理
 	pass 
