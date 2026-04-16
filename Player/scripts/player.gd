@@ -1,6 +1,6 @@
 class_name Player extends CharacterBody2D # 玩家角色，繼承 CharacterBody2D
 
-signal DirectionChanged(new_direction : Vector2 ) # 當面向變化時對外廣播
+signal direction_changed(new_direction : Vector2 ) # 當面向變化時對外廣播
 signal player_damaged( hurt_box : HurtBox )
 #signal player_destroyd( hurt_box : HurtBox )
 
@@ -24,7 +24,7 @@ var max_hp : int = 6
 
 func _ready() -> void: # 場景載入完成後的初始化
 	PlayerManager.player = self
-	state_machine.Initialize(self) # 將自身傳入狀態機完成初始化
+	state_machine.initialize(self) # 將自身傳入狀態機完成初始化
 	update_hp(99)
 	hit_box.damaged.connect(_take_damage)
 
@@ -55,16 +55,16 @@ func set_direction() -> bool:# 根據輸入更新面向
 	if new_dir == cardinal_direction: # 若朝向未變化
 		return false # 返回 false 跳過後續
 	cardinal_direction = new_dir# 記錄新的朝向
-	DirectionChanged.emit(new_dir) # 通知監聽者方向變化
+	direction_changed.emit(new_dir) # 通知監聽者方向變化
 	sprite.scale.x = -1 if cardinal_direction == Vector2.LEFT else 1# 根據左右朝向翻轉精靈
 	return true	# 返回 true 表示更新成功
 
 
 func update_animation(state : String) -> void:# 切換動畫狀態
-	animation_player.play(state + "_" + AnimDirection())# 播放帶朝向後綴的動畫
+	animation_player.play(state + "_" + anim_direction())# 播放帶朝向後綴的動畫
 
 
-func AnimDirection() -> String:# 生成動畫方向字串
+func anim_direction() -> String:# 生成動畫方向字串
 	if cardinal_direction == Vector2.DOWN: # 面向下時
 		return "down"# 返回 down
 	elif cardinal_direction == Vector2.UP: # 面向上時

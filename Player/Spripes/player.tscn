@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://d0arotb3r1h37"]
+[gd_scene load_steps=43 format=3 uid="uid://d0arotb3r1h37"]
 
 [ext_resource type="Script" uid="uid://bgfwrw05kx8g6" path="res://Player/scripts/player.gd" id="1_4ntmi"]
 [ext_resource type="Texture2D" uid="uid://dfqh72deo4l0c" path="res://Player/Spripes/PlayerSprite02.png" id="2_thq5y"]
@@ -11,7 +11,8 @@
 [ext_resource type="AudioStream" uid="uid://7oyca0t47uig" path="res://Player/Audio/SwordSwoosh.wav" id="8_cqeda"]
 [ext_resource type="PackedScene" uid="uid://cf1tyb6862ljg" path="res://GeneralNods/HurtBox/hurt_box.tscn" id="10_g0htv"]
 [ext_resource type="Script" uid="uid://g0f3i2tbd7ol" path="res://Player/scripts/Player interactionsHost.gd" id="10_w6wad"]
-[ext_resource type="Script" uid="uid://bx1yud51ofctw" path="res://Player/scripts/PlayerCamera.gd" id="11_qdp0q"]
+[ext_resource type="Script" uid="uid://dle6qi7gti88o" path="res://Player/scripts/state_stun.gd" id="11_f8ejn"]
+[ext_resource type="Script" uid="uid://bx1yud51ofctw" path="res://Player/scripts/player_camer.gd" id="11_qdp0q"]
 [ext_resource type="PackedScene" uid="uid://d0hvxu0a0g2nj" path="res://GeneralNods/HitBox/hit_box.tscn" id="13_udi6j"]
 [ext_resource type="AudioStream" uid="uid://dpwy4t2q07p3h" path="res://Player/Audio/hit_player.wav" id="14_r1pij"]
 
@@ -402,6 +403,54 @@ tracks/0/keys = {
 "values": [3, 5]
 }
 
+[sub_resource type="Animation" id="Animation_udi6j"]
+resource_name = "stun_down"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [30]
+}
+
+[sub_resource type="Animation" id="Animation_f8ejn"]
+resource_name = "stun_side"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [32]
+}
+
+[sub_resource type="Animation" id="Animation_r1pij"]
+resource_name = "stun_up"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [31]
+}
+
 [sub_resource type="Animation" id="Animation_vtle1"]
 resource_name = "walk_down"
 length = 0.3
@@ -453,54 +502,6 @@ tracks/0/keys = {
 "values": [13, 16]
 }
 
-[sub_resource type="Animation" id="Animation_udi6j"]
-resource_name = "stun_down"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [30]
-}
-
-[sub_resource type="Animation" id="Animation_r1pij"]
-resource_name = "stun_up"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [31]
-}
-
-[sub_resource type="Animation" id="Animation_f8ejn"]
-resource_name = "stun_side"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [32]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x3vf3"]
 _data = {
 &"RESET": SubResource("Animation_gwnis"),
@@ -519,21 +520,6 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r1pij"]
-
-[sub_resource type="Animation" id="Animation_yo0d3"]
-resource_name = "default"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
 
 [sub_resource type="Animation" id="Animation_kewv5"]
 length = 0.001
@@ -579,6 +565,21 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0)
 }
 tracks/1/use_blend = true
+
+[sub_resource type="Animation" id="Animation_yo0d3"]
+resource_name = "default"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p508e"]
 _data = {
@@ -647,6 +648,9 @@ script = ExtResource("5_thq5y")
 script = ExtResource("6_5y1yv")
 attack_sound = ExtResource("8_cqeda")
 decelerate_speed = 0.0
+
+[node name="Stun" type="Node" parent="StateMachine"]
+script = ExtResource("11_f8ejn")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 editor_draw_limits = true

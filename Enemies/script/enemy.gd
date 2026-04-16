@@ -54,10 +54,10 @@ func set_direction(direction) -> bool:# 根據輸入更新面向
 
 
 func update_animation(state : String) -> void:# 切換動畫狀態
-	animation_player.play(state + "_" + AnimDirection())
+	animation_player.play(state + "_" + anim_direction())
 
 
-func AnimDirection() -> String:# 生成動畫方向字串
+func anim_direction() -> String:# 生成動畫方向字串
 	if cardinal_direction == Vector2.DOWN: 
 		return "down"
 	elif cardinal_direction == Vector2.UP: 
