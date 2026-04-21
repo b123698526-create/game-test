@@ -6,7 +6,6 @@ class_name State_stun extends State # 行走狀態，繼承 State
 
 @onready var idle: State = $"../Idle"# 待機狀態引用
 
-var animation_finished: bool = false
 
 var hurt_box : HurtBox
 var direction : Vector2
@@ -21,10 +20,9 @@ func init() -> void:
 func enter() -> void:# 進入行走狀態時設定動畫
 	
 	player.update_animation("stun")
-	player.animation_player.animation_finished.connect(_animation_finished)
+	player.animation_player._animation_finished.connect(animation_finished)
 	print("enter player stun")
 	print("play anim =", "stun_" + player.anim_direction())
-
 
 	direction = player.global_position.direction_to(hurt_box.global_position)
 	player.velocity = direction * -knockback_speed
@@ -32,18 +30,19 @@ func enter() -> void:# 進入行走狀態時設定動畫
 	
 	player.make_invulnerable( invulnerable_duration )
 	player.effect_animation_player.play("damage")
+	
 
 func exit() -> void: # 離開行走狀態暫不處理
 	print("exit player stun")
 	next_state =null
-	player.animation_player.animation_finished.disconnect(_animation_finished)
+	player.animation_player._animation_finished.disconnect(animation_finished)
 	
 	
 	
 func process(_delta : float) -> State:# 每幀更新移動並判斷切換	
-	print("stun process, animation_finished =", _animation_finished, "next_state =", next_state)
+	print("stun process, animation_finished =", animation_finished, "next_state =", next_state)
 	return next_state
-
+	
 
 func physics(_delta : float) -> State:# 物理幀未額外處理
 	return null# 保持當前狀態
@@ -59,6 +58,6 @@ func _player_damage( _hurt_box : HurtBox ) -> void :
 	state_machine.change_state(self)
 
 
-func _animation_finished() -> void:
+func animation_finished() -> void:
 	next_state = idle
 	
