@@ -6,7 +6,7 @@ class_name State_stun extends State # 行走狀態，繼承 State
 
 @onready var idle: State = $"../Idle"# 待機狀態引用
 
-
+var animation_finished_flag: bool = false
 var hurt_box : HurtBox
 var direction : Vector2
 
@@ -20,7 +20,7 @@ func init() -> void:
 func enter() -> void:# 進入行走狀態時設定動畫
 	
 	player.update_animation("stun")
-	player.animation_player._animation_finished.connect(animation_finished)
+	player.animation_player.animation_finished.connect(animation_finished)
 	print("enter player stun")
 	print("play anim =", "stun_" + player.anim_direction())
 
@@ -35,12 +35,12 @@ func enter() -> void:# 進入行走狀態時設定動畫
 func exit() -> void: # 離開行走狀態暫不處理
 	print("exit player stun")
 	next_state =null
-	player.animation_player._animation_finished.disconnect(animation_finished)
+	player.animation_player.animation_finished.disconnect(animation_finished)
 	
 	
 	
 func process(_delta : float) -> State:# 每幀更新移動並判斷切換	
-	print("stun process, animation_finished =", animation_finished, "next_state =", next_state)
+	print("stun process, animation_finished =",animation_finished_flag , "next_state =", next_state)
 	return next_state
 	
 
@@ -58,6 +58,7 @@ func _player_damage( _hurt_box : HurtBox ) -> void :
 	state_machine.change_state(self)
 
 
-func animation_finished() -> void:
+func animation_finished(_anim_name) -> void:
+	print("animation finished =", _anim_name)
 	next_state = idle
 	
