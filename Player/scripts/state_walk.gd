@@ -6,7 +6,7 @@ class_name State_walk extends State # 行走狀態，繼承 State
 
 func enter() -> void:# 進入行走狀態時設定動畫
 	if player != null: # 確保玩家引用存在
-		player.update_animation("stun") # 播放行走動畫
+		player.update_animation("walk") # 播放行走動畫
 	pass# 佔位
 
 func exit() -> void: # 離開行走狀態暫不處理

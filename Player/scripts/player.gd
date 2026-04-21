@@ -74,9 +74,7 @@ func anim_direction() -> String:# 生成動畫方向字串
 
 
 func _take_damage(hurt_box : HurtBox) -> void:
-	print("=== Player._take_damage ===")
-	print("hp after =", hp)
-	print("player_damage emit")
+	
 	if invulnerable == true:
 		return
 	update_hp(-hurt_box.damage)
