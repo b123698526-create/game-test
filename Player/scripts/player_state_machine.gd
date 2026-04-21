@@ -4,6 +4,8 @@ var states : Array[ State ] = [] # 存儲全部子狀態的列表
 var prev_state : State # 記錄上一個狀態
 var current_state : State # 記錄當前狀態
 
+
+
 func _ready() -> void: # 初始化時先禁用處理
 	process_mode = Node.PROCESS_MODE_DISABLED # 預設禁用處理，待初始化後開啟
 	pass # 佔位便於擴展
@@ -33,7 +35,7 @@ func initialize( _player : Player) -> void:# 初始化狀態機並注入玩家�
 	states[0].state_machine = self
 	
 	for state in states:
-		state._init()
+		state.init()
 
 	
 	

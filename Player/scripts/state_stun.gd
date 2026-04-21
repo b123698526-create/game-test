@@ -6,6 +6,7 @@ class_name State_stun extends State # 行走狀態，繼承 State
 
 @onready var idle: State = $"../Idle"# 待機狀態引用
 
+var animation_finished: bool = false
 
 var hurt_box : HurtBox
 var direction : Vector2

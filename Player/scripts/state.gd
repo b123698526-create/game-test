@@ -6,7 +6,7 @@ static  var state_machine: PlayerStateMachine
 func _ready() -> void:# 基類初始化暫不處理
 	pass 
 
-func _init() -> void:
+func init() -> void:
 	pass
 
 func enter() -> void:# 狀態進入時的掛鉤
