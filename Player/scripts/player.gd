@@ -1,7 +1,7 @@
 class_name Player extends CharacterBody2D # 玩家角色，繼承 CharacterBody2D
 
 signal direction_changed(new_direction : Vector2 ) # 當面向變化時對外廣播
-signal player_damage( hurt_box : HurtBox )
+signal player_damaged( hurt_box : HurtBox )
 #signal player_destroyd( hurt_box : HurtBox )
 
 const DIR_4 = [ Vector2.RIGHT,Vector2.DOWN,Vector2.LEFT,Vector2.UP ] # 四向列表用於索引
@@ -81,10 +81,10 @@ func _take_damage(hurt_box : HurtBox) -> void:
 		return
 	update_hp(-hurt_box.damage)
 	if hp > 0:
-		player_damage.emit( hurt_box )
+		player_damaged.emit( hurt_box )
 	else  :
 		#playey_destroyd.emit( hurt_box )
-		player_damage.emit( hurt_box )
+		player_damaged.emit( hurt_box )
 		update_hp(99)
 
 
