@@ -15,6 +15,7 @@ var next_steat : State = null
 func _init() -> void:
 	player.player_damaged.connect( _player_damaged)
 
+
 func enter() -> void:# 進入行走狀態時設定動畫
 	player.update_animation("stun")
 	player.animation_player.animation_finished.connect(_animation_finished)
@@ -23,7 +24,14 @@ func enter() -> void:# 進入行走狀態時設定動畫
 func exit() -> void: # 離開行走狀態暫不處理
 	next_steat =null
 	player.animation_player.animation_finished.disconnect(_animation_finished)
-
+	
+	direction = player.global_position.direction_to(hurt_box.global_position)
+	player.direction = direction * -knockback_speed
+	player.set_direction()
+	
+	player.make_invulnerable( invulnerable_duration )
+	player.effect_animation_player.play("damage")
+	
 func process(_delta : float) -> State:# 每幀更新移動並判斷切換	
 	return next_steat
 
@@ -36,6 +44,7 @@ func handle_input( _event : InputEvent ) -> State:# 處理攻擊輸入
 	return null# 其他輸入不切換
 
 func _player_damaged( _hurt_box : HurtBox ) -> void :
+	
 	hurt_box = _hurt_box
 	state_machine.change_state(self)
 

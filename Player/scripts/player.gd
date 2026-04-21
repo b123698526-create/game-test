@@ -92,6 +92,11 @@ func update_hp( _delta : int ) -> void:
 	
 	
 	
-func make_invulnerable() -> void:
-	
-	pass
+func make_invulnerable(_duration : float = 1.0 ) -> void:
+	invulnerable = true
+	hit_box.monitoring = false
+
+	await get_tree().create_timer(_duration).timeout
+	#一個計時器
+	invulnerable = false
+	hit_box.monitoring = true
