@@ -69,7 +69,7 @@ func anim_direction() -> String:# 生成動畫方向字串
 func _take_damage ( hurt_box : HurtBox) -> void :
 	if invulnerable == true :
 		return
-	hp -= hurt_box.damaged
+	hp -= hurt_box.damage
 	if hp > 0 :
 		enemy_damage.emit(hurt_box)
 	else:

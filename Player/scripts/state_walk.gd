@@ -1,4 +1,4 @@
-class_name State_stun extends State # 行走狀態，繼承 State
+class_name State_walk extends State # 行走狀態，繼承 State
 
 @export var move_speed : float = 100 # 行走速度導出到 Inspector，預設 100
 @onready var idle: State = $"../Idle"# 待機狀態引用
