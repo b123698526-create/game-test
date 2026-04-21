@@ -19,7 +19,7 @@ func init() -> void:
 
 func enter() -> void:# 進入行走狀態時設定動畫
 	
-	player.update_animation("stun")
+	
 	player.animation_player.animation_finished.connect(animation_finished)
 	print("enter player stun")
 	print("play anim =", "stun_" + player.anim_direction())
@@ -27,9 +27,9 @@ func enter() -> void:# 進入行走狀態時設定動畫
 	direction = player.global_position.direction_to(hurt_box.global_position)
 	player.velocity = direction * -knockback_speed
 	player.set_direction()
-	
+	player.update_animation("stun")
 	player.make_invulnerable( invulnerable_duration )
-	player.effect_animation_player.play("damage")
+	player.effect_animation_player.play("damaged" )
 	
 
 func exit() -> void: # 離開行走狀態暫不處理
@@ -39,8 +39,9 @@ func exit() -> void: # 離開行走狀態暫不處理
 	
 	
 	
-func process(_delta : float) -> State:# 每幀更新移動並判斷切換	
+func process( _delta : float) -> State:# 每幀更新移動並判斷切換	
 	print("stun process, animation_finished =",animation_finished_flag , "next_state =", next_state)
+	player.velocity = player.velocity * decelerate_speed * _delta
 	return next_state
 	
 

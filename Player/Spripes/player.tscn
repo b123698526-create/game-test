@@ -651,6 +651,7 @@ decelerate_speed = 0.0
 
 [node name="Stun" type="Node" parent="StateMachine"]
 script = ExtResource("11_f8ejn")
+knockback_speed = 2000.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 editor_draw_limits = true
