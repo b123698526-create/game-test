@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 LevelManager="*res://00_Globals/GlobalsLevelManager.gd"
 PlayerManager="*res://00_Globals/globlals_player_manager.gd"
+PlayerHur="*res://GUI/player_hud/player_hud.tscn"
 
 [display]
 
