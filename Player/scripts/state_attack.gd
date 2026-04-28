@@ -12,6 +12,7 @@ var attacking : bool = false # 是否處於攻擊動作中
 @onready var hurt_Box : HurtBox = %AttackHurtBox # 攻擊判定盒引用
 
 func enter() -> void:# 進入攻擊狀態時觸發動畫與音效
+	print("ENTER ATTACK")
 	player.update_animation("attack") # 切換角色動畫到攻擊
 	attack_anim.play("attack_" + player.anim_direction()) # 播放對應方向的攻擊特效
 	animation_player.animation_finished.connect(end_attack) # 動畫結束時回調 EndAttack
@@ -21,13 +22,13 @@ func enter() -> void:# 進入攻擊狀態時觸發動畫與音效
 	attacking = true# 標記正在攻擊
 	hurt_Box.monitoring = true # 打開攻擊判定
 	await get_tree().create_timer( 0.075 ).timeout # 短暫延遲保持判定開啟
-	pass# 佔位以便擴展
+
 
 func exit() -> void: # 離開攻擊狀態時清理
 	animation_player.animation_finished.disconnect(end_attack) # 取消動畫結束回調
 	attacking = false # 重置攻擊標記
 	hurt_Box.monitoring = false # 關閉攻擊判定
-	pass# 佔位
+	
 
 func process(_delta : float) -> State:# 攻擊期間衰減速度並決定切換
 	player.velocity -= player.velocity * decelerate_speed * _delta # 按係數逐漸減速
