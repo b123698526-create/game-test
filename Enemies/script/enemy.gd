@@ -37,7 +37,7 @@ func _physics_process(_delta: float) -> void:# 每幀物理更新
 	move_and_slide()# 依 velocity 移動並處理碰撞
 
 
-func set_direction(direction) -> bool:# 根據輸入更新面向
+func set_direction(_direction) -> bool:# 根據輸入更新面向
 	if direction == Vector2.ZERO: # 無輸入時不改變面向
 		return false# 返回 false 表示方向未變
 	

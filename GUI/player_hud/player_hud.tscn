@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://b42u4nl65ww6d" path="res://GUI/player_hud/player_hud.gd" id="1_oghrr"]
 [ext_resource type="PackedScene" uid="uid://bohmtxueufqti" path="res://GUI/player_hud/heart_gui.tscn" id="2_oghrr"]
 
-[node name="PlayerHur" type="CanvasLayer"]
+[node name="PlayerHud" type="CanvasLayer"]
 script = ExtResource("1_oghrr")
 
 [node name="Control" type="Control" parent="."]
@@ -14,6 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Control"]
 position = Vector2(389, 21)

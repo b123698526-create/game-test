@@ -90,7 +90,7 @@ func update_hp( _delta : int ) -> void:
 	
 	hp =  clampi(hp + _delta ,0,max_hp)
 		
-	
+	PlayerHur.update_hp(hp,max_hp)
 	
 	
 func make_invulnerable(_duration : float = 1.0 ) -> void:

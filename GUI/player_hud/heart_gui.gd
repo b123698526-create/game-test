@@ -6,7 +6,7 @@ class_name Heart_GUI extends Control
 var value : int = 2 :
 	set(_value):
 		value = _value
-		update_sprite
+		update_sprite()
 
 
 
