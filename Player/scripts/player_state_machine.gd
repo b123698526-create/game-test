@@ -23,8 +23,7 @@ func _unhandled_input(event: InputEvent) -> void:# 捕獲未處理的輸入事�
 	if current_state == null:
 		return
 
-	if event.is_action_pressed("attack"):
-		print("StateMachine received attack input")
+	
 	change_state(current_state.handle_input( event )) # 將輸入交給當前狀態並嘗試切換
 
 

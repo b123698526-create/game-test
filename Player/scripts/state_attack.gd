@@ -12,7 +12,7 @@ var attacking : bool = false # 是否處於攻擊動作中
 @onready var hurt_Box : HurtBox = %AttackHurtBox # 攻擊判定盒引用
 
 func enter() -> void:# 進入攻擊狀態時觸發動畫與音效
-	print("ENTER ATTACK")
+
 	player.update_animation("attack") # 切換角色動畫到攻擊
 	attack_anim.play("attack_" + player.anim_direction()) # 播放對應方向的攻擊特效
 	animation_player.animation_finished.connect(end_attack) # 動畫結束時回調 EndAttack

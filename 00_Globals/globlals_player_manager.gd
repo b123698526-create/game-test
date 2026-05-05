@@ -2,6 +2,9 @@ extends Node
 
 const PLAYER = preload("uid://d0arotb3r1h37")
 
+
+
+
 var player : Player
 var player_spawned : bool = false
 
